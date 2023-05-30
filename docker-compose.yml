@@ -4,6 +4,10 @@ services:
   app:
     environment:
       - SECRET_KEY=${SECRET_KEY}
+      - DB_HOST=db
+      - DB_NAME=devdb
+      - DB_USER=devuser
+      - DB_PASS=changeme
     build:
       context: .
       args:
@@ -14,4 +18,16 @@ services:
       - ./app:/app
     command: >
       sh -c 'python manage.py runserver 0.0.0.0:8000'
+    depends_on:
+      - db
+  db:
+    environment:
+      - POSTGRES_DB=devdb
+      - POSTGRES_USER=devuser
+      - POSTGRES_PASSWORD=changeme
+    image: postgres:13-alpine
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
 
+volumes:
+  dev-db-data:
