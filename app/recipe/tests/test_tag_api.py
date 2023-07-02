@@ -1,15 +1,13 @@
 """
 Test for the tags API.
 """
+from core.models import Tag
 from django.contrib.auth import get_user_model
-from django.urls import reverse
 from django.test import TestCase
-
+from django.urls import reverse
+from recipe.serializers import TagSerializer
 from rest_framework import status
 from rest_framework.test import APIClient
-
-from core.models import Tag
-from recipe.serializers import TagSerializer
 
 TAGS_URL = reverse("recipe:tag-list")
 
@@ -80,12 +78,9 @@ class PrivateTagsApiTests(TestCase):
     def test_delete_tag(self):
         """Test deleting a tag."""
 
-        tag=Tag.objects.create(user=self.user,name="Breakfast")
-        url=detail_url(tag.id)
-        res=self.client.delete(url)
-        self.assertEqual(res.status_code,status.HTTP_204_NO_CONTENT)
-        tags=Tag.objects.filter(user=self.user)
+        tag = Tag.objects.create(user=self.user, name="Breakfast")
+        url = detail_url(tag.id)
+        res = self.client.delete(url)
+        self.assertEqual(res.status_code, status.HTTP_204_NO_CONTENT)
+        tags = Tag.objects.filter(user=self.user)
         self.assertFalse(tags.exists())
-
-
-
