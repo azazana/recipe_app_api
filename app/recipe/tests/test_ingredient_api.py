@@ -74,3 +74,4 @@ class PrivateIngredientsAptTests(TestCase):
         url=detail_url(ingredient_id=ingredient.id)
         res=self.client.patch(url,payload)
         self.assertEqual(res.status_code,status.HTTP_200_OK)
+        self.assertEqual(res.data["name"],payload.get("name"))
