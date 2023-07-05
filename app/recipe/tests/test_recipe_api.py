@@ -322,7 +322,8 @@ class PrivateRecipeApiTests(TestCase):
             name=payload["ingredients"][0]["name"],
         )
         self.assertTrue(ingredient.exists())
-        self.assertIn(ingredient, recipe.ingredients.all())
+        self.assertEqual(ingredient.count(),1)
+        self.assertIn(ingredient[0], recipe.ingredients.all())
 
     def test_update_recipe_assign_ingredient(self):
         """Test assigning an existing ingredient with updating a recipe."""
