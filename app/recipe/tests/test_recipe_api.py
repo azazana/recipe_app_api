@@ -322,7 +322,7 @@ class PrivateRecipeApiTests(TestCase):
             name=payload["ingredients"][0]["name"],
         )
         self.assertTrue(ingredient.exists())
-        self.assertEqual(ingredient.count(),1)
+        self.assertEqual(ingredient.count(), 1)
         self.assertIn(ingredient[0], recipe.ingredients.all())
 
     def test_update_recipe_assign_ingredient(self):
