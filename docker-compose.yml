@@ -28,6 +28,7 @@ services:
       - POSTGRES_DB=devdb
       - POSTGRES_USER=devuser
       - POSTGRES_PASSWORD=changeme
+      - DEBUG=1
     image: postgres:13-alpine
     volumes:
       - dev-db-data:/var/lib/postgresql/data
