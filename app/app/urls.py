@@ -21,11 +21,11 @@ from drf_spectacular.views import (
 )
 from django.conf.urls.static import static
 from django.conf import settings
-from core import core_views
+from core import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/health-check',core_views.health_check,name="health-check"),
+    path('api/health-check',views.health_check,name="health-check"),
     path('api/schema/', SpectacularAPIView.as_view(), name='api-schema'),
     path(
         'api/docs/', SpectacularSwaggerView.as_view(url_name='api-schema'),
