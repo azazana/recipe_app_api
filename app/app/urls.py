@@ -25,7 +25,7 @@ from core import view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/health-check',view.health_check,name="health-check"),
+    path('api/health-check', view.health_check, name="health-check"),
     path('api/schema/', SpectacularAPIView.as_view(), name='api-schema'),
     path(
         'api/docs/', SpectacularSwaggerView.as_view(url_name='api-schema'),
